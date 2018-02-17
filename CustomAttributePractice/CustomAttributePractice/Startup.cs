@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CustomAttributePractice.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,6 +23,8 @@ namespace CustomAttributePractice
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var cs = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<NetContext>(o => o.UseSqlServer(cs));
             services.AddMvc();
         }
 
@@ -43,7 +47,7 @@ namespace CustomAttributePractice
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Project}/{action=Index}/{id?}");
             });
         }
     }

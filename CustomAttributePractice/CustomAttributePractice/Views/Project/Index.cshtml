@@ -1,0 +1,30 @@
+﻿@model List<Project>
+@{
+
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Project ID</th>
+            <th>Project number</th>
+            <th>Project name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+        <tr>
+            <td>@r.Id</td>
+            <td>@r.Number</td>
+            <td>@r.Name</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Dodaj">Add</a>
+
